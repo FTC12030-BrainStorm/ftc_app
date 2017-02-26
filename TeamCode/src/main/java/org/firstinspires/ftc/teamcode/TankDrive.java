@@ -51,7 +51,7 @@ import com.qualcomm.robotcore.util.ElapsedTime;
  * Remove or comment out the @Disabled line to add this opmode to the Driver Station OpMode list
  */
 
-@TeleOp(name="Tank Drive with Shooter TeleOp", group="Iterative Opmode")  // @Autonomous(...) is the other common choice
+@TeleOp(name="Tank Drive TeleOp", group="Iterative Opmode")  // @Autonomous(...) is the other common choice
 
 public class TankDrive extends OpMode
 {
@@ -63,7 +63,7 @@ public class TankDrive extends OpMode
 
     DcMotor leftDriveMotor = null;
     DcMotor rightDriveMotor = null;
-    DcMotor shooterMotor = null;
+   // DcMotor shooterMotor = null;
 
     /*
      * Code to run ONCE when the driver hits INIT
@@ -78,10 +78,10 @@ public class TankDrive extends OpMode
          */
         // leftMotor  = hardwareMap.dcMotor.get("left_drive");
         // rightMotor = hardwareMap.dcMotor.get("right_drive");
-        
-        leftDriveMotor = hardwareMap.dcMotor.get("left_drive_motor");
-        rightDriveMotor = hardwareMap.dcMotor.get("right_drive_motor");
-        shooterMotor = hardwareMap.dcMotor.get("shooter_motor");
+
+        leftDriveMotor = hardwareMap.dcMotor.get("left_motor");
+        rightDriveMotor = hardwareMap.dcMotor.get("right_motor");
+       // shooterMotor = hardwareMap.dcMotor.get("shooter_motor");
 
         // eg: Set the drive motor directions:
         // Reverse the motor that runs backwards when connected directly to the battery
@@ -119,12 +119,12 @@ public class TankDrive extends OpMode
         leftDriveMotor.setPower(-gamepad1.left_stick_y);
         rightDriveMotor.setPower(-gamepad1.right_stick_y);
 
-        if (gamepad2.dpad_down) {
+       /* if (gamepad2.dpad_down) {
             shooterMotor.setPower(.5);
         }
         if (gamepad2.dpad_up) {
             shooterMotor.setPower(1.0);
-        }
+        }*/
     }
 
     /*
