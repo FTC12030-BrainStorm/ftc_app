@@ -36,6 +36,10 @@ import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.util.ElapsedTime;
+import com.qualcomm.robotcore.util.Range;
+
+import org.firstinspires.ftc.robotcontroller.external.samples.HardwarePushbot;
+import org.firstinspires.ftc.robotcore.external.Telemetry;
 
 /**
  * This file contains an example of an iterative (Non-Linear) "OpMode".
@@ -51,7 +55,7 @@ import com.qualcomm.robotcore.util.ElapsedTime;
  * Remove or comment out the @Disabled line to add this opmode to the Driver Station OpMode list
  */
 
-@TeleOp(name="Tank Drive TeleOp", group="Iterative Opmode")  // @Autonomous(...) is the other common choice
+@TeleOp(name="TankDriveTeleOp1", group="Iterative Opmode")  // @Autonomous(...) is the other common choice
 
 public class TankDrive extends OpMode
 {
@@ -60,7 +64,7 @@ public class TankDrive extends OpMode
 
     // private DcMotor leftMotor = null;
     // private DcMotor rightMotor = null;
-
+    
     DcMotor leftDriveMotor = null;
     DcMotor rightDriveMotor = null;
    // DcMotor shooterMotor = null;
@@ -71,6 +75,7 @@ public class TankDrive extends OpMode
     @Override
     public void init() {
         telemetry.addData("Status", "Initialized");
+        
 
         /* eg: Initialize the hardware variables. Note that the strings used here as parameters
          * to 'get' must correspond to the names assigned during the robot configuration
@@ -81,6 +86,7 @@ public class TankDrive extends OpMode
 
         leftDriveMotor = hardwareMap.dcMotor.get("left_motor");
         rightDriveMotor = hardwareMap.dcMotor.get("right_motor");
+
        // shooterMotor = hardwareMap.dcMotor.get("shooter_motor");
 
         // eg: Set the drive motor directions:
@@ -111,13 +117,21 @@ public class TankDrive extends OpMode
     @Override
     public void loop() {
         telemetry.addData("Status", "Running: " + runtime.toString());
+        telemetry.addData("Gamepad 1 Status Data", gamepad1.toString());
+        telemetry.addData("Gamepad 2 Status Data", gamepad2.toString());
+        telemetry.addData("Left Drive Motor getController", leftDriveMotor.getController());
+        telemetry.addData("Left Drive Motor getPower", leftDriveMotor.getPower());
+        telemetry.addData("Right Drive Motor getController", rightDriveMotor.getController());
+        telemetry.addData("Right Drive Motor getPower", rightDriveMotor.getPower());
 
         // eg: Run wheels in tank mode (note: The joystick goes negative when pushed forwards)
         // leftMotor.setPower(-gamepad1.left_stick_y);
         // rightMotor.setPower(-gamepad1.right_stick_y);
 
-        leftDriveMotor.setPower(-gamepad1.left_stick_y);
+        leftDriveMotor.setPower(gamepad1.left_stick_y);
         rightDriveMotor.setPower(-gamepad1.right_stick_y);
+
+
 
        /* if (gamepad2.dpad_down) {
             shooterMotor.setPower(.5);
