@@ -36,17 +36,13 @@ import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.util.ElapsedTime;
-import com.qualcomm.robotcore.util.Range;
-
-import org.firstinspires.ftc.robotcontroller.external.samples.HardwarePushbot;
-import org.firstinspires.ftc.robotcore.external.Telemetry;
 
 /**
  * This file contains an example of an iterative (Non-Linear) "OpMode".
  * An OpMode is a 'program' that runs in either the autonomous or the teleop period of an FTC match.
  * The names of OpModes appear on the menu of the FTC Driver Station.
  * When an selection is made from the menu, the corresponding OpMode
- * class is instantiated on the Robot Controller and executed.
+ * class is instantiated on the RobotOther Controller and executed.
  *
  * This particular OpMode just executes a basic Tank Drive Teleop for a PushBot
  * It includes all the skeletal structure that all iterative OpModes contain.
@@ -62,11 +58,9 @@ public class TankDrive extends OpMode
     /* Declare OpMode members. */
     private ElapsedTime runtime = new ElapsedTime();
 
-    // private DcMotor leftMotor = null;
-    // private DcMotor rightMotor = null;
-    
-    DcMotor leftDriveMotor = null;
-    DcMotor rightDriveMotor = null;
+   // private DcMotor leftMotor = null;
+   // private DcMotor rightMotor = null;
+
    // DcMotor shooterMotor = null;
 
     /*
@@ -79,13 +73,16 @@ public class TankDrive extends OpMode
 
         /* eg: Initialize the hardware variables. Note that the strings used here as parameters
          * to 'get' must correspond to the names assigned during the robot configuration
-         * step (using the FTC Robot Controller app on the phone).
+         * step (using the FTC RobotOther Controller app on the phone).
          */
-        // leftMotor  = hardwareMap.dcMotor.get("left_drive");
-        // rightMotor = hardwareMap.dcMotor.get("right_drive");
+      //  leftMotor  = hardwareMap.dcMotor.get("left_drive");
+      //  rightMotor = hardwareMap.dcMotor.get("right_drive");
 
-        leftDriveMotor = hardwareMap.dcMotor.get("left_motor");
-        rightDriveMotor = hardwareMap.dcMotor.get("right_motor");
+        RobotOther.leftDriveMotor = hardwareMap.dcMotor.get("left_drive");
+        RobotOther.rightDriveMotor = hardwareMap.dcMotor.get("right_drive");
+
+        RobotOther.leftDriveMotor.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
+        RobotOther.rightDriveMotor.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
 
        // shooterMotor = hardwareMap.dcMotor.get("shooter_motor");
 
@@ -119,17 +116,17 @@ public class TankDrive extends OpMode
         telemetry.addData("Status", "Running: " + runtime.toString());
         telemetry.addData("Gamepad 1 Status Data", gamepad1.toString());
         telemetry.addData("Gamepad 2 Status Data", gamepad2.toString());
-        telemetry.addData("Left Drive Motor getController", leftDriveMotor.getController());
-        telemetry.addData("Left Drive Motor getPower", leftDriveMotor.getPower());
-        telemetry.addData("Right Drive Motor getController", rightDriveMotor.getController());
-        telemetry.addData("Right Drive Motor getPower", rightDriveMotor.getPower());
+        telemetry.addData("Left Drive Motor getController", RobotOther.leftDriveMotor.getController());
+        telemetry.addData("Left Drive Motor getPower", RobotOther.leftDriveMotor.getPower());
+        telemetry.addData("Right Drive Motor getController", RobotOther.rightDriveMotor.getController());
+        telemetry.addData("Right Drive Motor getPower", RobotOther.rightDriveMotor.getPower());
 
         // eg: Run wheels in tank mode (note: The joystick goes negative when pushed forwards)
         // leftMotor.setPower(-gamepad1.left_stick_y);
         // rightMotor.setPower(-gamepad1.right_stick_y);
 
-        leftDriveMotor.setPower(gamepad1.left_stick_y);
-        rightDriveMotor.setPower(-gamepad1.right_stick_y);
+        RobotOther.leftDriveMotor.setPower(gamepad1.left_stick_y);
+        RobotOther.rightDriveMotor.setPower(-gamepad1.right_stick_y);
 
 
 
