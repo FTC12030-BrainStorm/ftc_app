@@ -36,7 +36,6 @@ import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.Servo;
-import com.qualcomm.robotcore.hardware.ServoController;
 import com.qualcomm.robotcore.util.ElapsedTime;
 
 /**
@@ -53,9 +52,9 @@ import com.qualcomm.robotcore.util.ElapsedTime;
  * Remove or comment out the @Disabled line to add this opmode to the Driver Station OpMode list
  */
 
-@TeleOp(name="TankDriveTeleOp1", group="Iterative Opmode")  // @Autonomous(...) is the other common choice
+@TeleOp(name="ServoTeleOp", group="Iterative Opmode")  // @Autonomous(...) is the other common choice
 
-public class TankDrive extends OpMode
+public class ServoTeleop extends OpMode
 {
     /* Declare OpMode members. */
     private ElapsedTime runtime = new ElapsedTime();
@@ -80,13 +79,13 @@ public class TankDrive extends OpMode
       //  leftMotor  = hardwareMap.dcMotor.get("left_drive");
       //  rightMotor = hardwareMap.dcMotor.get("right_drive");
 
-        RobotOther.leftDriveMotor = hardwareMap.dcMotor.get("left_drive");
-        RobotOther.rightDriveMotor = hardwareMap.dcMotor.get("right_drive");
+//        RobotOther.leftDriveMotor = hardwareMap.dcMotor.get("left_drive");
+//        RobotOther.rightDriveMotor = hardwareMap.dcMotor.get("right_drive");
+//
+//        RobotOther.leftDriveMotor.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
+//        RobotOther.rightDriveMotor.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
 
-        RobotOther.leftDriveMotor.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
-        RobotOther.rightDriveMotor.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
-
-      //  RobotOther.catapultServo = hardwareMap.servo.get("catapult_servo");
+        RobotOther.catapultServo = hardwareMap.servo.get("catapult_servo");
 
        // shooterMotor = hardwareMap.dcMotor.get("shooter_motor");
 
@@ -117,31 +116,31 @@ public class TankDrive extends OpMode
      */
     @Override
     public void loop() {
-        telemetry.addData("Status", "Running: " + runtime.toString());
-        telemetry.addData("Gamepad 1 Status Data", gamepad1.toString());
-        telemetry.addData("Gamepad 2 Status Data", gamepad2.toString());
-        telemetry.addData("Left Drive Motor getController", RobotOther.leftDriveMotor.getController());
-        telemetry.addData("Left Drive Motor getPower", RobotOther.leftDriveMotor.getPower());
-        telemetry.addData("Right Drive Motor getController", RobotOther.rightDriveMotor.getController());
-        telemetry.addData("Right Drive Motor getPower", RobotOther.rightDriveMotor.getPower());
+//        telemetry.addData("Status", "Running: " + runtime.toString());
+//        telemetry.addData("Gamepad 1 Status Data", gamepad1.toString());
+//        telemetry.addData("Gamepad 2 Status Data", gamepad2.toString());
+//        telemetry.addData("Left Drive Motor getController", RobotOther.leftDriveMotor.getController());
+//        telemetry.addData("Left Drive Motor getPower", RobotOther.leftDriveMotor.getPower());
+//        telemetry.addData("Right Drive Motor getController", RobotOther.rightDriveMotor.getController());
+//        telemetry.addData("Right Drive Motor getPower", RobotOther.rightDriveMotor.getPower());
 
         // eg: Run wheels in tank mode (note: The joystick goes negative when pushed forwards)
         // leftMotor.setPower(-gamepad1.left_stick_y);
         // rightMotor.setPower(-gamepad1.right_stick_y);
 
-        RobotOther.leftDriveMotor.setPower(gamepad1.left_stick_y);
-        RobotOther.rightDriveMotor.setPower(-gamepad1.right_stick_y);
+//        RobotOther.leftDriveMotor.setPower(gamepad1.left_stick_y);
+//        RobotOther.rightDriveMotor.setPower(-gamepad1.right_stick_y);
 
-//        RobotOther.catapultServo.setDirection(Servo.Direction.valueOf("FORWARD"));
-//        if (gamepad1.dpad_right) {
-//            RobotOther.catapultServo.setPosition(0);
-//        } else if (gamepad1.dpad_up) {
-//            RobotOther.catapultServo.setPosition(.25);
-//        } else if (gamepad1.dpad_left) {
-//            RobotOther.catapultServo.setPosition(.50);
-//        } else if (gamepad1.dpad_down) {
-//            RobotOther.catapultServo.setPosition(.75);
-//        }
+        RobotOther.catapultServo.setDirection(Servo.Direction.valueOf("FORWARD"));
+        if (gamepad1.dpad_right) {
+            RobotOther.catapultServo.setPosition(0);
+        } else if (gamepad1.dpad_up) {
+            RobotOther.catapultServo.setPosition(.25);
+        } else if (gamepad1.dpad_left) {
+            RobotOther.catapultServo.setPosition(.50);
+        } else if (gamepad1.dpad_down) {
+            RobotOther.catapultServo.setPosition(.75);
+        }
 
 
        /* if (gamepad2.dpad_down) {

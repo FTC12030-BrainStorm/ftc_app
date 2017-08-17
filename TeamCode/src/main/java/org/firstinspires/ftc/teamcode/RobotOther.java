@@ -1,6 +1,7 @@
 package org.firstinspires.ftc.teamcode;
 
 import com.qualcomm.robotcore.hardware.DcMotor;
+import com.qualcomm.robotcore.hardware.Servo;
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 
 /**
@@ -11,5 +12,6 @@ public class RobotOther {
 
     public static DcMotor leftDriveMotor = null;
     public static DcMotor rightDriveMotor = null;
+    public static Servo catapultServo = null;
 
 }

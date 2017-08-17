@@ -5,6 +5,7 @@ import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.hardware.DcMotor;
 
 import static com.qualcomm.robotcore.hardware.DcMotor.RunMode.RUN_TO_POSITION;
+import static com.qualcomm.robotcore.hardware.DcMotor.RunMode.RUN_USING_ENCODER;
 
 /**
  * Created by Robotics on 3/27/2017.
@@ -40,11 +41,23 @@ public class EncoderAuto extends OpMode {
         RobotOther.leftDriveMotor.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
         RobotOther.rightDriveMotor.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
 
+        RobotOther.leftDriveMotor.setMode(RUN_USING_ENCODER);
+        RobotOther.rightDriveMotor.setMode(RUN_USING_ENCODER);
+
         RobotOther.leftDriveMotor.setTargetPosition(RobotOther.leftDriveMotor.getCurrentPosition() + (int)(inchesToMove * COUNTS_PER_INCH));
         RobotOther.rightDriveMotor.setTargetPosition(RobotOther.rightDriveMotor.getCurrentPosition() + (int) (inchesToMove * COUNTS_PER_INCH));
 
         RobotOther.leftDriveMotor.setMode(RUN_TO_POSITION);
         RobotOther.rightDriveMotor.setMode(RUN_TO_POSITION);
+
+        RobotOther.leftDriveMotor.setPower(.5);
+        RobotOther.rightDriveMotor.setPower(.5);
+
+        RobotOther.leftDriveMotor.setPower(0);
+        RobotOther.rightDriveMotor.setPower(0);
+
+        RobotOther.leftDriveMotor.setMode(RUN_USING_ENCODER);
+        RobotOther.rightDriveMotor.setMode(RUN_USING_ENCODER);
 
     }
 
