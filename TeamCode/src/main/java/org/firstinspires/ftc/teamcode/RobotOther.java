@@ -14,4 +14,7 @@ public class RobotOther {
     public static DcMotor rightDriveMotor = null;
     public static Servo catapultServo = null;
 
+    public static DcMotor catapultMotorOne = null;
+    public static DcMotor catapultMotorTwo = null;
+
 }
